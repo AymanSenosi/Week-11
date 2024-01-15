@@ -205,6 +205,7 @@ public class ProjectDao extends DaoBase {
 				setParameter(stmt, 3, project.getActualHours(), BigDecimal.class);
 				setParameter(stmt, 4, project.getDifficulty(), Integer.class);
 				setParameter(stmt, 5, project.getNotes(), String.class);
+				setParameter(stmt, 6, project.getProjectId(), Integer.class);
 
 				boolean modified = stmt.executeUpdate() == 1;
 				commitTransaction(conn);

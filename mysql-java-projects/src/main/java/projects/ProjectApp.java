@@ -75,10 +75,10 @@ public class ProjectApp {
 
 	private void deleteProject() {
 		 listProjects();
-		 Integer projectId = getIntInput("Enter a project ID of the project to delete");
+		 Integer projectId = getIntInput("\nEnter a project ID of the project to delete");
 		 
 		 projectService.deleteProject(projectId);
-		 System.out.println("Project " + projectId + " was deleted successfully.");
+		 System.out.println("\nProject " + projectId + " was deleted successfully!");
 		 
 		 if (Objects.nonNull(curProject) && curProject.getProjectId().equals(projectId)) {
 			 curProject = null;
@@ -103,25 +103,21 @@ public class ProjectApp {
 		
 		Project project = new Project();
 		
+		project.setProjectId(curProject.getProjectId());
 		project.setProjectName(Objects.isNull(projectName) ? curProject.getProjectName() : projectName);
-		
 		project.setEstimatedHours(Objects.isNull(estimatedHours) ? curProject.getEstimatedHours() : estimatedHours);
-		
 		project.setActualHours(Objects.isNull(actualHours) ? curProject.getActualHours() : actualHours);
-		
 		project.setDifficulty(Objects.isNull(difficulty) ? curProject.getDifficulty() : difficulty);
-		
 		project.setNotes(Objects.isNull(notes) ? curProject.getNotes() : notes);
-		
+	
 		projectService.modifyProjectDetails(project);
-		
 		curProject = projectService.fetchProjectById(curProject.getProjectId());
 	}
 
 	private void selectProject() {
 		listProjects();
 
-		Integer projectId = getIntInput("Enter a project ID to select a project");
+		Integer projectId = getIntInput("\nEnter a project ID to select a project");
 		curProject = null;
 
 		/*
@@ -136,7 +132,7 @@ public class ProjectApp {
 		 // checks to see if curProject is null. If so, prints a message to the console.
 		
 		if (Objects.isNull(curProject)) {
-			System.out.println("Invalid project ID selected");
+			System.out.println("\nInvalid project ID selected");
 		}
 
 	}
@@ -169,7 +165,7 @@ public class ProjectApp {
 		project.setNotes(notes);
 
 		Project dbProject = projectService.addProject(project);
-		System.out.println("You have successfully created project: " + dbProject);
+		System.out.println("\nYou have successfully created project: " + dbProject);
 	}
 
 	// This method accepts input from the user as a BigDecimal.
